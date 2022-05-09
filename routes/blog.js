@@ -3,7 +3,7 @@ import { Text, ScrollView, StyleSheet, Button, View, Image } from "react-native"
 import { TouchableOpacity } from "react-native";
 // import logo from '../assets/cheatsheet';
 import storyblok from "../utilities/storyblok";
-import {value} from './home'
+
 export default function About({ navigation }) {
   const [stories, setStories] = useState([]);
 
@@ -23,8 +23,6 @@ export default function About({ navigation }) {
     navigation.navigate("post", { slug });
   };
   const goToHome = () => {
-    value = value + 1
-    console.log('value', value)
     navigation.navigate("home");
   };
   const getMonth = (number) => {
@@ -55,7 +53,6 @@ export default function About({ navigation }) {
     <ScrollView style={styles.container}>
       {stories.map((post) => {
         const d = new Date(post.published_at);
-        // console.log('post', post)
         return (
           <TouchableOpacity
             style={styles.post}

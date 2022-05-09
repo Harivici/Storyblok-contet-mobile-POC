@@ -19,7 +19,7 @@ export default function Home({ navigation }) {
       setStory(resp.data.story);
     };
     fetchPost();
-    () => {
+    return () => {
       console.log('unmount the comp')
     }
   }, []);
@@ -34,20 +34,21 @@ export default function Home({ navigation }) {
 
   return story.content ? (
     <View style={styles.container}>
-      {story.content.body.map(comp => {
+      {story.content.body.map((comp, index) => {
         console.log('comp', comp)
         if (comp.component === 'feature') {
-          return (<Text>{comp.name}</Text>)
+          return (<View key={comp.name}><Text>{comp.name}</Text></View>)
         }
-        return (<View key={comp.subText}>
+        return (<View key={`${comp.component}${index}`}>
       <Editable text={comp._editable} />
       <View>
         {comp.logo && (
           <View style={{flexDirection: "row",
-          justifyContent: "center"}}><Image
+          justifyContent: "center"}}>
+            {comp.logo.filename ? <Image
             style={styles.logo}
-            source={{ uri: comp.logo.filename }}
-          ></Image>
+            source={{ uri: comp.logo.filename || 'x'}}
+          ></Image> : null }
           </View>
         )}
         <Text style={styles.titleText}>{comp.headline}</Text>
