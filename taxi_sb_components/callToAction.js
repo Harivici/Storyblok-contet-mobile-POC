@@ -10,7 +10,7 @@ const CallToAction = ({comp, index, goToHome}) => {
         <Button
           title={comp.title}
           color={Platform.OS === 'ios' ? 'white' : 'black'}
-          onPress={goToHome}
+          onPress={() => goToHome(comp.link.url)}
         ></Button>
       </TouchableOpacity>
     </View>

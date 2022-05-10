@@ -28,8 +28,8 @@ const Taxi = ({ navigation }) => {
   }))
     
 
-  const goToHome = () => {
-    navigation.navigate("home");
+  const goToHome = (home) => {
+    navigation.navigate(home);
   };
 
   const openLink = (url) => {
